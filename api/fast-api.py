@@ -15,3 +15,14 @@ app.add_middleware(
 @app.get("/")
 def index():
   return {"greeting": "Hello world"}
+
+post recevie Genre (upload user)
+
+get the model from gcp 
+
+model.predict(uplaoduser)
+
+response , create midi, wav
+
+return touser
+
