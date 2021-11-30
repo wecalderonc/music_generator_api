@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import build_music
+from random import randrange
 
 app = FastAPI()
 
@@ -11,18 +13,16 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-
 @app.get("/")
 def index():
-  return {"greeting": "Hello world"}
+    return {"greeting": "Hello world"}
 
-post recevie Genre (upload user)
+@app.get("/genres")
+def index():
+    return {"1": "rock", "2": "pop"}
 
-get the model from gcp 
-
-model.predict(uplaoduser)
-
-response , create midi, wav
-
-return touser
-
+@app.get("/predict")
+def index():
+  song_name = f"test_song_number_{randrange(1000)}"
+  new_song = build_music.create_music(song_name)
+  return new_song
