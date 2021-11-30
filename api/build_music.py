@@ -11,7 +11,7 @@ from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.models import load_model
 import json
 
-model = load_model("model_40seq_196voc_5tracks.h5")
+model = load_model("../model_40seq_196voc_5tracks.h5")
 
 def create_song(song_name):
   ###### REAL BEHAVIOR ######
@@ -75,7 +75,7 @@ def create_song(song_name):
 
 
 def Malody_Generator(Note_Count):
-    pickle_model = pickle.load(open('wil_deploy_dummy.pickle', 'rb'))
+    pickle_model = pickle.load(open('../wil_deploy_dummy.pickle', 'rb'))
     network_input = pickle_model['network_input']
     pitchnames = pickle_model['pitchnames']
 
