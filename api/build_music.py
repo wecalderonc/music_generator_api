@@ -1,81 +1,18 @@
 import random
 import tensorflow as tf
-import h5py
 import numpy as np
-from music21 import converter, instrument, note, chord, stream, tempo, duration
-import matplotlib.pyplot as plt
 import pickle
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras import layers, models
-from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.models import load_model
 import json
 
-model = load_model("../models/model_40seq_196voc_5tracks.h5")
+model = load_model("models/model_40seq_196voc_5tracks.h5")
 
-def create_song(song_name):
-  ###### REAL BEHAVIOR ######
-
+def create_song():
   Music_notes= Malody_Generator(200)
-  #the song maybe from the user or directly saved in your gcp
-  #save the song in new_song
-  ################
-  ###### DUMMY BEHAVIOR #######
-  #load a song
-  #Melody.write('midi', fp=f'{song_name}.mid')
-  #new_song = open('raw_data/test_william.mid', 'rb')
-  #print(new_song)
-  #return send_file(new_song, mimetype='audio/midi')
-
-  print(Music_notes)
-
   return { "notes": json.dumps(Music_notes) }
 
-
-# def download_model():
-#   MODEL_NAME = "music-generator-model"
-#   BUCKET_NAME = "music-generator-713"
-#   MODEL_VERSION = "0.1"
-#   LOCAL_MODEL_NAME = "model.h5"
-#   BUCKET_NAME = 'music-generator-713'
-#   BUCKET_TRAIN_DATA_PATH = 'data/'
-
-#   gcs_path = f"gs://{BUCKET_NAME}/models/{MODEL_NAME}/{MODEL_VERSION}/{LOCAL_MODEL_NAME}"
-#   print(gcs_path)
-#   loaded_model = tf.io.gfile.GFile(gcs_path, 'rb')
-#   model_gcs = h5py.File(loaded_model, 'r')
-#   print(model_gcs)
-
-
-# def chords_n_notes(Snippet):
-#   Melody = []
-#   offset = 0  # Incremental
-#   for i in Snippet:
-#       #If it is chord
-#       if ("." in i or i.isdigit()):
-#           chord_notes = i.split(".")  # Seperating the notes in chord
-#           notes = []
-#           for j in chord_notes:
-#               inst_note = int(j)
-#               note_snip = note.Note(inst_note)
-#               notes.append(note_snip)
-#               chord_snip = chord.Chord(notes)
-#               chord_snip.offset = offset
-#               Melody.append(chord_snip)
-#       # pattern is a note
-#       else:
-#           note_snip = note.Note(i)
-#           note_snip.offset = offset
-#           Melody.append(note_snip)
-#       # increase offset each iteration so that notes do not stack
-#       offset += 0.5
-
-#   Melody_midi = stream.Stream(Melody)
-#   return Melody_midi
-
-
 def Malody_Generator(Note_Count):
-    pickle_model = pickle.load(open('../models/wil_deploy_dummy.pickle', 'rb'))
+    pickle_model = pickle.load(open('models/wil_deploy_dummy.pickle', 'rb'))
     network_input = pickle_model['network_input']
     pitchnames = pickle_model['pitchnames']
 
