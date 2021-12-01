@@ -30,10 +30,10 @@ uvicorn
 six>=1.14
 #joblib
 memoized-property
-termcolor
+#termcolor
 
 # Music
 #pypianoroll
-pretty_midi
-pyfluidsynth
+#pretty_midi
+#pyfluidsynth
 music21
