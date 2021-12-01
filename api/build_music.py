@@ -8,7 +8,7 @@ import json
 model = load_model("models/model_40seq_196voc_5tracks.h5")
 
 def create_song():
-  Music_notes= Malody_Generator(200)
+  Music_notes= Malody_Generator(50)
   return { "notes": json.dumps(Music_notes) }
 
 def Malody_Generator(Note_Count):
