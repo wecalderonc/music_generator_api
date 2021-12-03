@@ -27,7 +27,7 @@ def randomizing_user_input():
 
   for i in range(3):
     user_input_notes.append(random.randint(168, n_vocab_notes_test))
-    user_input_duration.append(random.randint(0, n_vocab_dur_test))
+    user_input_duration.append(random.randint(3, 10))
     int_to_notes = dict((number, note) for number, note in enumerate(pitchname_notes_train))
     int_to_dur = dict((number, note) for number, note in enumerate(pitchnames_dur_train))
     random_int_to_notes = [int_to_notes[char] for char in user_input_notes]
